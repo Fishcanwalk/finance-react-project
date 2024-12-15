@@ -7,7 +7,8 @@ export default function TransactionList(props) {
       title: "Date-time",
       dataIndex: "action_datetime",
       key: "action_datetime",
-      render: (_,record) => dayjs(record.action_datetime).format("DD/MM/YYYY - HH:mm")
+      render: (_, record) =>
+        dayjs(record.action_datetime).format("DD/MM/YYYY - HH:mm"),
     },
     {
       title: "Type",
@@ -31,13 +32,22 @@ export default function TransactionList(props) {
       title: "Action",
       key: "action",
       render: (transaction) => (
-        <button
-          onClick={() => {
-            props.onRowDeleted(transaction.id);
-          }}
-        >
-          delete
-        </button>
+        <Space size="middle">
+          <button
+            onClick={() => {
+              props.onRowDeleted(transaction.id);
+            }}
+          >
+            edit
+          </button>
+          <button
+            onClick={() => {
+              props.onRowDeleted(transaction.id);
+            }}
+          >
+            delete
+          </button>
+        </Space>
       ),
     },
   ];
