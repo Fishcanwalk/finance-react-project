@@ -13,12 +13,19 @@ function App() {
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
   };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <LoginScreen onLoginSuccess={handleLoginSuccess} />
-      </header>
-    </div>
+    <>
+      {isAuthenticated ? (
+        <FinanceScreen />
+      ) : (
+        <div className="App">
+          <header className="App-header">
+            <LoginScreen onLoginSuccess={handleLoginSuccess} />
+          </header>
+        </div>
+      )}
+    </>
   );
 }
 export default App;
