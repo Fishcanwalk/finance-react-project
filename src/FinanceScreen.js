@@ -6,13 +6,24 @@ import { Divider } from "antd";
 import AddItem from "./components/Additem";
 import { Spin, Typography } from "antd";
 import axios from "axios";
-
+import EditItem from "./components/EditItem";
 const URL_TXACTIONS = "/api/txactions";
 
 function FinanceScreen() {
   const [summaryAmount, setSummaryAmount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [transactionData, setTransactionData] = useState([]);
+  const [editData, setEditData] = useState([]);
+  const [openEditForm, setOpenEditForm] = useState(false);
+
+  const openForm = (record) => {
+    setEditData(record);
+    setOpenEditForm(true);
+  };
+
+  const closeForm = () => {
+    setOpenEditForm(false);
+  };
 
   const fetchItems = async () => {
     try {
@@ -80,13 +91,31 @@ function FinanceScreen() {
     setSummaryAmount(
       transactionData.reduce(
         (sum, transaction) =>
-          transaction.type === "income"
+          transaction.type === "Income"
             ? sum + transaction.amount
             : sum - transaction.amount,
         0
       )
     );
   }, [transactionData]);
+
+  const handleEditItem = async (item) => {
+    try {
+      setIsLoading(true);
+      const response = await axios.post(`${URL_TXACTIONS}/${item.id}`, {
+        data: item,
+      });
+      const { id, attributes } = response.data.data;
+      setTransactionData([
+        ...transactionData,
+        { id: id, key: id, ...attributes },
+      ]);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="App">
@@ -102,8 +131,16 @@ function FinanceScreen() {
             data={transactionData}
             onNoteChanged={handleNoteChanged}
             onRowDeleted={deleteItem}
+            onRowEdit={openForm}
           />
         </Spin>
+        {openEditForm && (
+          <EditItem
+            onSubmit={handleEditItem}
+            closeModal={closeForm}
+            defaultValue={editData}
+          />
+        )}
       </header>
     </div>
   );

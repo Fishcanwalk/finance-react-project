@@ -8,11 +8,11 @@ export default function AddItem(props) {
           style={{ width: "100px" }}
           options={[
             {
-              value: "income",
+              value: "Income",
               label: "รายรับ",
             },
             {
-              value: "expense",
+              value: "Expense",
               label: "รายจ่าย",
             },
           ]}

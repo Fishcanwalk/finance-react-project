@@ -15,7 +15,7 @@ export default function TransactionList(props) {
       dataIndex: "type",
       key: "type",
       render: (type) => (
-        <Tag color={type === "income" ? "green" : "red"}>{type}</Tag>
+        <Tag color={type === "Income" ? "green" : "red"}>{type}</Tag>
       ),
     },
     {
@@ -35,7 +35,7 @@ export default function TransactionList(props) {
         <Space size="middle">
           <button
             onClick={() => {
-              props.onRowDeleted(transaction.id);
+              props.onRowEdit(transaction);
             }}
           >
             edit
