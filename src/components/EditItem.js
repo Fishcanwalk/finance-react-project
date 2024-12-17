@@ -7,10 +7,13 @@ const EditItem = ({ defaultValue, onSubmit, closeModal }) => {
   useEffect(() => {
     form.setFieldsValue({
       id: defaultValue.id,
+      type: defaultValue.type,
       amount: defaultValue.amount,
       note: defaultValue.note,
     });
   }, [defaultValue]);
+
+  const handleSumbit = (value) => {};
 
   return (
     <Modal
@@ -22,7 +25,7 @@ const EditItem = ({ defaultValue, onSubmit, closeModal }) => {
           Cancel
         </Button>,
         <Button key="submit" type="primary">
-          Edit
+          Submit
         </Button>,
       ]}
     >
