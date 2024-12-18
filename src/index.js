@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Blog from "./pages/blog";
+import FinanceScreen from "./FinanceScreen";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/Blog",
     element: <Blog />,
+  },
+  {
+    path: "/FinanceScreen",
+    element: <FinanceScreen />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));

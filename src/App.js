@@ -21,6 +21,7 @@ function App() {
         <FinanceScreen />
       ) : (
         <div className="App">
+          <Navbar />
           <body className="App-header">
             <LoginScreen onLoginSuccess={handleLoginSuccess} />
           </body>
