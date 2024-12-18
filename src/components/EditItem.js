@@ -13,7 +13,17 @@ const EditItem = ({ defaultValue, onSubmit, closeModal }) => {
     });
   }, [defaultValue]);
 
-  const handleSumbit = (value) => {};
+  const handleSumbit = () => {
+    form.validateFields().then((values) => {
+      const updatedValue = {
+        ...defaultValue,
+        ...values,
+      };
+      console.log("Updated Record:", updatedValue);
+      onSubmit(updatedValue);
+      closeModal();
+    });
+  };
 
   return (
     <Modal
@@ -24,7 +34,7 @@ const EditItem = ({ defaultValue, onSubmit, closeModal }) => {
         <Button key="cancel" onClick={closeModal}>
           Cancel
         </Button>,
-        <Button key="submit" type="primary">
+        <Button key="submit" type="primary" onClick={handleSumbit}>
           Submit
         </Button>,
       ]}

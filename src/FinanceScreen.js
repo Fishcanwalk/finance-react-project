@@ -102,9 +102,10 @@ function FinanceScreen() {
   const handleEditItem = async (item) => {
     try {
       setIsLoading(true);
-      const response = await axios.post(`${URL_TXACTIONS}/${item.id}`, {
+      const response = await axios.put(`${URL_TXACTIONS}/${item.id}`, {
         data: item,
       });
+      fetchItems();
       const { id, attributes } = response.data.data;
       setTransactionData([
         ...transactionData,
