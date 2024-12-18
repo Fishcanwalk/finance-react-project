@@ -1,12 +1,14 @@
 import "./App.css";
 import TransactionList from "./components/TransactionList";
-import { useState, useEffect } from "react";
 import dayjs from "dayjs";
-import { Divider } from "antd";
-import AddItem from "./components/Additem";
-import { Spin, Typography } from "antd";
 import axios from "axios";
+import AddItem from "./components/Additem";
+import Navbar from "./components/Navbar";
 import EditItem from "./components/EditItem";
+import { useState, useEffect } from "react";
+import { Divider } from "antd";
+import { Spin, Typography } from "antd";
+
 const URL_TXACTIONS = "/api/txactions";
 
 function FinanceScreen() {
@@ -120,7 +122,10 @@ function FinanceScreen() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
+        <Navbar />
+      </header>
+      <body className="App-body">
         <Spin spinning={isLoading}>
           <Typography.Title>
             จำนวนเงินปัจจุบัน {summaryAmount} บาท
@@ -142,7 +147,7 @@ function FinanceScreen() {
             defaultValue={editData}
           />
         )}
-      </header>
+      </body>
     </div>
   );
 }

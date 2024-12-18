@@ -3,6 +3,7 @@ import axios from "axios";
 import LoginScreen from "./LoginScreen";
 import FinanceScreen from "./FinanceScreen";
 import { useState } from "react";
+import Navbar from "./components/Navbar";
 
 axios.defaults.baseURL =
   process.env.REACT_APP_BASE_URL || "http://localhost:1337";
@@ -20,9 +21,9 @@ function App() {
         <FinanceScreen />
       ) : (
         <div className="App">
-          <header className="App-header">
+          <body className="App-header">
             <LoginScreen onLoginSuccess={handleLoginSuccess} />
-          </header>
+          </body>
         </div>
       )}
     </>
