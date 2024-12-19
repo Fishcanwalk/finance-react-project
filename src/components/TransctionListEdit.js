@@ -1,7 +1,7 @@
 import { Table, Space, Tag, Button } from "antd";
 import dayjs from "dayjs";
 
-export default function TransactionList(props) {
+export default function TransactionListEdit(props) {
   const columns = [
     {
       title: "Date-time",
@@ -31,7 +31,7 @@ export default function TransactionList(props) {
     {
       title: "Action",
       key: "action",
-      hidden: true,
+      hidden: false,
       render: (transaction) => (
         <Space size="middle">
           <Button

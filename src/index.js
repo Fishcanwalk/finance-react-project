@@ -9,7 +9,7 @@ import Home from "./pages/home";
 import About from "./pages/about";
 
 import ShowFinance from "./pages/ShowFinance";
-import FinanceScreen from "./pages/FinanceScreen";
+import FinanceScreen from "./pages/EditFinancePage";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
     element: <ShowFinance />,
   },
   {
-    path: "/FinanceScreen",
+    path: "/ShowFinance/Edit",
     element: <FinanceScreen />,
   },
 ]);

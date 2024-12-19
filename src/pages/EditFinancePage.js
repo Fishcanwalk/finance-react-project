@@ -7,13 +7,15 @@ import Navbar from "../components/Navbar";
 import EditItem from "../components/EditItem";
 import { useState, useEffect } from "react";
 import { Divider, Layout } from "antd";
-import { Spin, Typography } from "antd";
-import TransactionListEdit from "../components/TransactionList";
+import { Spin, Typography, Button } from "antd";
+import TransactionListEdit from "../components/TransctionListEdit";
+import { Link, useNavigate } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
 const URL_TXACTIONS = "/api/txactions";
 
 function FinanceScreen() {
+  const navigate = useNavigate();
   const [summaryAmount, setSummaryAmount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [transactionData, setTransactionData] = useState([]);
@@ -151,6 +153,12 @@ function FinanceScreen() {
                 defaultValue={editData}
               />
             )}
+            <Button
+              onClick={() => navigate("/ShowFinance")}
+              style={{ marginBottom: "5rem" }}
+            >
+              Back to Home
+            </Button>
           </body>
         </div>
       </Content>

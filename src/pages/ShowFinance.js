@@ -6,8 +6,9 @@ import AddItem from "../components/Additem";
 import Navbar from "../components/Navbar";
 import EditItem from "../components/EditItem";
 import { useState, useEffect } from "react";
-import { Divider, Layout } from "antd";
+import { Button, Divider, Layout } from "antd";
 import { Spin, Typography } from "antd";
+import { Link } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
 const URL_TXACTIONS = "/api/txactions";
@@ -16,17 +17,6 @@ function ShowFinance() {
   const [summaryAmount, setSummaryAmount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [transactionData, setTransactionData] = useState([]);
-  const [editData, setEditData] = useState([]);
-  const [openEditForm, setOpenEditForm] = useState(false);
-
-  const openForm = (record) => {
-    setEditData(record);
-    setOpenEditForm(true);
-  };
-
-  const closeForm = () => {
-    setOpenEditForm(false);
-  };
 
   const fetchItems = async () => {
     try {
@@ -46,47 +36,6 @@ function ShowFinance() {
       setIsLoading(false);
     }
   };
-  const deleteItem = async (itemId) => {
-    try {
-      setIsLoading(true);
-      await axios.delete(`${URL_TXACTIONS}/${itemId}`);
-      fetchItems();
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  const handleAddItem = async (item) => {
-    try {
-      setIsLoading(true);
-      const params = { ...item, action_datetime: dayjs() };
-      const response = await axios.post(URL_TXACTIONS, { data: params });
-      const { id, attributes } = response.data.data;
-      setTransactionData([
-        ...transactionData,
-        { id: id, key: id, ...attributes },
-      ]);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleNoteChanged = (id, note) => {
-    setTransactionData(
-      transactionData.map((transaction) => {
-        transaction.note = transaction.id === id ? note : transaction.note;
-        return transaction;
-      })
-    );
-  };
-
-  // const handleRowDeleted = (id) => {
-  //   setTransactionData(transactionData.filter((trx) => trx.id !== id));
-  // };
-
   useEffect(() => {
     fetchItems();
   }, []);
@@ -103,25 +52,6 @@ function ShowFinance() {
     );
   }, [transactionData]);
 
-  const handleEditItem = async (item) => {
-    try {
-      setIsLoading(true);
-      const response = await axios.put(`${URL_TXACTIONS}/${item.id}`, {
-        data: item,
-      });
-      fetchItems();
-      const { id, attributes } = response.data.data;
-      setTransactionData([
-        ...transactionData,
-        { id: id, key: id, ...attributes },
-      ]);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <Layout>
       <Sider>
@@ -129,28 +59,18 @@ function ShowFinance() {
       </Sider>
       <Content>
         <div className="App">
-          <body className="App-body">
+          <body className="App-header">
             <Spin spinning={isLoading}>
               <Typography.Title>
                 จำนวนเงินปัจจุบัน {summaryAmount} บาท
               </Typography.Title>
 
-              <AddItem onItemAdded={handleAddItem} />
               <Divider>บันทึก รายรับ - รายจ่าย</Divider>
-              <TransactionList
-                data={transactionData}
-                onNoteChanged={handleNoteChanged}
-                onRowDeleted={deleteItem}
-                onRowEdit={openForm}
-              />
+              <TransactionList data={transactionData} />
+              <Button style={{ marginBottom: "5rem" }}>
+                <Link to="Edit">Edit</Link>
+              </Button>
             </Spin>
-            {openEditForm && (
-              <EditItem
-                onSubmit={handleEditItem}
-                closeModal={closeForm}
-                defaultValue={editData}
-              />
-            )}
           </body>
         </div>
       </Content>

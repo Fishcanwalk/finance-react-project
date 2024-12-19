@@ -19,8 +19,8 @@ function getItem(label, key, icon, children) {
 }
 const items = [
   getItem(<Link to="/">Home</Link>, <PieChartOutlined />),
-  getItem(<Link to="/FinanceScreen">Finance Screen</Link>, <FileOutlined />),
   getItem(<Link to="/ShowFinance">Show Finance</Link>, <DesktopOutlined />),
+  getItem(<Link to="/About">About</Link>, <FileOutlined />),
   getItem(<Link to="/About">Contact</Link>, <FileOutlined />),
 ];
 const Navbar = () => {
