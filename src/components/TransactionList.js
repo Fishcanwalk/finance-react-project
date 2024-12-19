@@ -33,20 +33,20 @@ export default function TransactionList(props) {
       key: "action",
       render: (transaction) => (
         <Space size="middle">
-          <button
+          <Button
             onClick={() => {
               props.onRowEdit(transaction);
             }}
           >
             edit
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => {
               props.onRowDeleted(transaction.id);
             }}
           >
             delete
-          </button>
+          </Button>
         </Space>
       ),
     },

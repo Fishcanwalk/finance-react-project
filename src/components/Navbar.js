@@ -7,8 +7,8 @@ import {
   TeamOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
-const { Header, Content, Footer } = Layout;
+import { Breadcrumb, Flex, Layout, Menu, theme } from "antd";
+const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -20,7 +20,7 @@ function getItem(label, key, icon, children) {
 const items = [
   getItem(<Link to="/">Home</Link>, <PieChartOutlined />),
   getItem(<Link to="/FinanceScreen">Finance Screen</Link>, <FileOutlined />),
-  getItem(<Link to="/Blog">Blogs</Link>, <DesktopOutlined />),
+  getItem(<Link to="/ShowFinance">Show Finance</Link>, <DesktopOutlined />),
   getItem(<Link to="/About">Contact</Link>, <FileOutlined />),
 ];
 const Navbar = () => {
@@ -28,30 +28,32 @@ const Navbar = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  // return (
-  //   <>
-  //     <nav>
-  //       <div>
-  //         <div>
-  //           <Link to="/">Home</Link>
-  //         </div>
-  //         <div>
-  //           <Link to="/Blog">Blogs</Link>
-  //         </div>
-  //         <div>
-  //           <Link to="/About">Contact</Link>
-  //         </div>
-  //         <div>
-  //           <Link to="/About">About</Link>
-  //         </div>
-  //       </div>
-  //     </nav>
-  //     <Outlet />
-  //   </>
-  // );
+
   return (
     <Layout>
-      <Header
+      <Sider
+        breakpoint="lg"
+        collapsedWidth="0"
+        onBreakpoint={(broken) => {
+          console.log(broken);
+        }}
+        onCollapse={(collapsed, type) => {
+          console.log(collapsed, type);
+        }}
+        style={{ minHeight: "100vh" }}
+      >
+        <div
+          className="demo-logo-vertical"
+          style={{ display: "flex", flexDirection: "row" }}
+        />
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={["1"]}
+          mode="inline"
+          items={items}
+        />
+      </Sider>
+      {/* <Header
         style={{
           display: "flex",
           alignItems: "center",
@@ -69,7 +71,7 @@ const Navbar = () => {
             position: "100px",
           }}
         />
-      </Header>
+      </Header> */}
     </Layout>
   );
 };

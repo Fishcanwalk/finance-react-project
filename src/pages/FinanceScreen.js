@@ -1,14 +1,16 @@
-import "./App.css";
-import TransactionList from "./components/TransactionList";
+import "../App.css";
+import TransactionList from "../components/TransactionList";
 import dayjs from "dayjs";
 import axios from "axios";
-import AddItem from "./components/Additem";
-import Navbar from "./components/Navbar";
-import EditItem from "./components/EditItem";
+import AddItem from "../components/Additem";
+import Navbar from "../components/Navbar";
+import EditItem from "../components/EditItem";
 import { useState, useEffect } from "react";
-import { Divider } from "antd";
+import { Divider, Layout } from "antd";
 import { Spin, Typography } from "antd";
+import TransactionListEdit from "../components/TransactionList";
 
+const { Header, Content, Footer, Sider } = Layout;
 const URL_TXACTIONS = "/api/txactions";
 
 function FinanceScreen() {
@@ -121,34 +123,38 @@ function FinanceScreen() {
   };
 
   return (
-    <div className="App">
-      <header>
+    <Layout>
+      <Sider>
         <Navbar />
-      </header>
-      <body className="App-body">
-        <Spin spinning={isLoading}>
-          <Typography.Title>
-            จำนวนเงินปัจจุบัน {summaryAmount} บาท
-          </Typography.Title>
+      </Sider>
+      <Content>
+        <div className="App">
+          <body className="App-body">
+            <Spin spinning={isLoading}>
+              <Typography.Title>
+                จำนวนเงินปัจจุบัน {summaryAmount} บาท
+              </Typography.Title>
 
-          <AddItem onItemAdded={handleAddItem} />
-          <Divider>บันทึก รายรับ - รายจ่าย</Divider>
-          <TransactionList
-            data={transactionData}
-            onNoteChanged={handleNoteChanged}
-            onRowDeleted={deleteItem}
-            onRowEdit={openForm}
-          />
-        </Spin>
-        {openEditForm && (
-          <EditItem
-            onSubmit={handleEditItem}
-            closeModal={closeForm}
-            defaultValue={editData}
-          />
-        )}
-      </body>
-    </div>
+              <AddItem onItemAdded={handleAddItem} />
+              <Divider>บันทึก รายรับ - รายจ่าย</Divider>
+              <TransactionListEdit
+                data={transactionData}
+                onNoteChanged={handleNoteChanged}
+                onRowDeleted={deleteItem}
+                onRowEdit={openForm}
+              />
+            </Spin>
+            {openEditForm && (
+              <EditItem
+                onSubmit={handleEditItem}
+                closeModal={closeForm}
+                defaultValue={editData}
+              />
+            )}
+          </body>
+        </div>
+      </Content>
+    </Layout>
   );
 }
 

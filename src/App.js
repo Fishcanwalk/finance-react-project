@@ -1,9 +1,11 @@
 import "./App.css";
 import axios from "axios";
 import LoginScreen from "./LoginScreen";
-import FinanceScreen from "./FinanceScreen";
+import FinanceScreen from "./pages/FinanceScreen";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
+import { Layout } from "antd";
+const { Header, Content, Footer, Sider } = Layout;
 
 axios.defaults.baseURL =
   process.env.REACT_APP_BASE_URL || "http://localhost:1337";
@@ -20,11 +22,17 @@ function App() {
       {isAuthenticated ? (
         <FinanceScreen />
       ) : (
-        <div className="App">
-          <Navbar />
-          <body className="App-header">
-            <LoginScreen onLoginSuccess={handleLoginSuccess} />
-          </body>
+        <div>
+          <Layout>
+            <Sider>
+              <Navbar />
+            </Sider>
+            <Content>
+              <body className="App-header App">
+                <LoginScreen onLoginSuccess={handleLoginSuccess} />
+              </body>
+            </Content>
+          </Layout>
         </div>
       )}
     </>
