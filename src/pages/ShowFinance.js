@@ -68,12 +68,13 @@ function ShowFinance() {
               <Divider>บันทึก รายรับ - รายจ่าย</Divider>
               <TransactionList data={transactionData} />
               <Button style={{ marginBottom: "5rem" }}>
-                <Link to="Edit">Edit</Link>
+                <Link to="Edit">Create and Edit</Link>
               </Button>
             </Spin>
           </body>
         </div>
       </Content>
+      <Footer></Footer>
     </Layout>
   );
 }

@@ -6,8 +6,13 @@ import {
   PieChartOutlined,
   TeamOutlined,
   UserOutlined,
+  HomeOutlined,
+  ApiOutlined,
+  ReconciliationOutlined,
 } from "@ant-design/icons";
+import { Avatar, Space } from "antd";
 import { Breadcrumb, Flex, Layout, Menu, theme } from "antd";
+
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -18,10 +23,38 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem(<Link to="/">Home</Link>, <PieChartOutlined />),
-  getItem(<Link to="/ShowFinance">Show Finance</Link>, <DesktopOutlined />),
-  getItem(<Link to="/About">About</Link>, <FileOutlined />),
-  getItem(<Link to="/About">Contact</Link>, <FileOutlined />),
+  getItem(
+    <Link to="/">
+      <HomeOutlined style={{ marginRight: "10px" }} />
+      Home
+    </Link>
+  ),
+  getItem(
+    <Link to="/Profile">
+      <UserOutlined style={{ marginRight: "10px" }} />
+      Profile
+    </Link>
+  ),
+  getItem(
+    <Link to="#DashBoard">
+      <DesktopOutlined style={{ marginRight: "10px" }} />
+      Dashboard
+    </Link>,
+    <FileOutlined />
+  ),
+  getItem(
+    <Link to="/ShowFinance">
+      <ReconciliationOutlined style={{ marginRight: "10px" }} />
+      Show Finance
+    </Link>
+  ),
+
+  getItem(
+    <Link to="#Logout">
+      <ApiOutlined style={{ marginRight: "10px" }} />
+      Logout
+    </Link>
+  ),
 ];
 const Navbar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -44,9 +77,11 @@ const Navbar = () => {
       >
         <div
           className="demo-logo-vertical"
-          style={{ display: "flex", flexDirection: "row" }}
+          // style={{ display: "flex", flexDirection: "row" }}
         />
+
         <Menu
+          style={{ paddingTop: "20px" }}
           theme="dark"
           defaultSelectedKeys={["1"]}
           mode="inline"

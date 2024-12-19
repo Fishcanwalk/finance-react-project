@@ -36,6 +36,7 @@ function App() {
                 <LoginScreen onLoginSuccess={handleLoginSuccess} />
               </body>
             </Content>
+            <Footer></Footer>
           </Layout>
         </div>
       )}

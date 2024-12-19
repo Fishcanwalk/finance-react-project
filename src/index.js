@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/home";
-import About from "./pages/about";
+import Profile from "./pages/Profile";
 
 import ShowFinance from "./pages/ShowFinance";
 import FinanceScreen from "./pages/EditFinancePage";
@@ -21,8 +21,8 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/About",
-    element: <About />,
+    path: "/Profile",
+    element: <Profile />,
   },
   {
     path: "/ShowFinance",
