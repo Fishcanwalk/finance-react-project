@@ -6,8 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/home";
+import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
-
+import EditProfile from "./components/EditProfile";
 import ShowFinance from "./pages/ShowFinance";
 import FinanceScreen from "./pages/EditFinancePage";
 
@@ -25,12 +26,20 @@ const router = createBrowserRouter([
     element: <Profile />,
   },
   {
+    path: "/Dashboard",
+    element: <Dashboard />,
+  },
+  {
     path: "/ShowFinance",
     element: <ShowFinance />,
   },
   {
     path: "/ShowFinance/Edit",
     element: <FinanceScreen />,
+  },
+  {
+    path: "/Profile/Edit",
+    element: <EditProfile />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));

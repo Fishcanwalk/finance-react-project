@@ -24,19 +24,13 @@ function getItem(label, key, icon, children) {
 }
 const items = [
   getItem(
-    <Link to="/">
-      <HomeOutlined style={{ marginRight: "10px" }} />
-      Home
-    </Link>
-  ),
-  getItem(
     <Link to="/Profile">
       <UserOutlined style={{ marginRight: "10px" }} />
       Profile
     </Link>
   ),
   getItem(
-    <Link to="#DashBoard">
+    <Link to="/Dashboard">
       <DesktopOutlined style={{ marginRight: "10px" }} />
       Dashboard
     </Link>,
@@ -88,25 +82,6 @@ const Navbar = () => {
           items={items}
         />
       </Sider>
-      {/* <Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <div className="demo-logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["2"]}
-          items={items}
-          style={{
-            flex: 1,
-            minWidth: 0,
-            position: "100px",
-          }}
-        />
-      </Header> */}
     </Layout>
   );
 };

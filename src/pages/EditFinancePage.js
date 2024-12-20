@@ -157,7 +157,7 @@ function FinanceScreen() {
               onClick={() => navigate("/ShowFinance")}
               style={{ marginBottom: "5rem" }}
             >
-              Back to Home
+              Back to Finance page
             </Button>
           </body>
         </div>

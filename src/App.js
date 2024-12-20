@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import { Layout } from "antd";
 import { Link, useNavigate, Redirect, Navigate } from "react-router-dom";
 import FinanceScreen from "./pages/EditFinancePage";
+
 const { Header, Content, Footer, Sider } = Layout;
 
 axios.defaults.baseURL =
@@ -28,15 +29,11 @@ function App() {
       ) : (
         <div>
           <Layout>
-            <Sider>
-              <Navbar />
-            </Sider>
             <Content>
               <body className="App-header App">
                 <LoginScreen onLoginSuccess={handleLoginSuccess} />
               </body>
             </Content>
-            <Footer></Footer>
           </Layout>
         </div>
       )}
