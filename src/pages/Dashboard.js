@@ -82,7 +82,7 @@ const Dashboard = () => {
           <Chart
             className="chart"
             type="donut"
-            width={600}
+            width={500}
             height={600}
             series={[summaryIncome, summaryExpense]}
             options={{
