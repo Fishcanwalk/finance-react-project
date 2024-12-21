@@ -35,6 +35,7 @@ export default function TransactionListEdit(props) {
       render: (transaction) => (
         <Space size="middle">
           <Button
+            type="primary"
             onClick={() => {
               props.onRowEdit(transaction);
             }}
@@ -42,9 +43,11 @@ export default function TransactionListEdit(props) {
             edit
           </Button>
           <Button
+            type="primary"
             onClick={() => {
               props.onRowDeleted(transaction.id);
             }}
+            danger
           >
             delete
           </Button>

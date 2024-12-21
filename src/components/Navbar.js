@@ -22,39 +22,41 @@ function getItem(label, key, icon, children) {
     label,
   };
 }
-const items = [
-  getItem(
-    <Link to="/Profile">
-      <UserOutlined style={{ marginRight: "10px" }} />
-      Profile
-    </Link>
-  ),
-  getItem(
-    <Link to="/Dashboard">
-      <DesktopOutlined style={{ marginRight: "10px" }} />
-      Dashboard
-    </Link>,
-    <FileOutlined />
-  ),
-  getItem(
-    <Link to="/ShowFinance">
-      <ReconciliationOutlined style={{ marginRight: "10px" }} />
-      Show Finance
-    </Link>
-  ),
 
-  getItem(
-    <Link to="#Logout">
-      <ApiOutlined style={{ marginRight: "10px" }} />
-      Logout
-    </Link>
-  ),
-];
 const Navbar = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const logout = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
+
+  const items = [
+    getItem(
+      <Link to="/Profile">
+        <UserOutlined style={{ marginRight: "10px" }} />
+        Profile
+      </Link>
+    ),
+    getItem(
+      <Link to="/Dashboard">
+        <DesktopOutlined style={{ marginRight: "10px" }} />
+        Dashboard
+      </Link>,
+      <FileOutlined />
+    ),
+    getItem(
+      <Link to="/ShowFinance">
+        <ReconciliationOutlined style={{ marginRight: "10px" }} />
+        Show Finance
+      </Link>
+    ),
+
+    getItem(
+      <Link to="/" onClick={logout}>
+        <ApiOutlined style={{ marginRight: "10px" }} />
+        Logout
+      </Link>
+    ),
+  ];
 
   return (
     <Layout>

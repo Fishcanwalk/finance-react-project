@@ -20,11 +20,13 @@ function App() {
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
   };
+  const handleLogoutSuccess = () => {
+    setIsAuthenticated(false);
+  };
 
   return (
     <>
       {isAuthenticated ? (
-        // <FinanceScreen />
         <Navigate to="/ShowFinance" />
       ) : (
         <div>
